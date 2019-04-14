@@ -25,3 +25,20 @@ else
   echo 'Installing git...'
   brew install git
 fi
+
+
+# check if node is installed in /usr/local
+if [[ -e /usr/local/bin/node ]]; then
+  echo 'Re-linking node to fix any broken symlinks...'
+  # relink to fix any broken symlinks
+  brew unlink node
+  brew link node
+# check if git is installed, but not linked
+elif [[-d /usr/local/Cellar/node ]]; then 
+  echo 'Node is already installed. Linking node...'
+  brew link node
+# otherwise install node
+else
+  echo 'Installing node...'
+  brew install node
+fi
