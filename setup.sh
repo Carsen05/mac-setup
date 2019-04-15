@@ -10,6 +10,7 @@ which -s brew
   echo 'Updating Homebrew...'
   brew update
 }
+
 # check if git is installed in /usr/local
 if [[ -e /usr/local/bin/git ]]; then
   echo 'Re-linking git to fix any broken symlinks...'
@@ -26,7 +27,6 @@ else
   brew install git
 fi
 
-
 # check if node is installed in /usr/local
 if [[ -e /usr/local/bin/node ]]; then
   echo 'Re-linking node to fix any broken symlinks...'
@@ -41,4 +41,12 @@ elif [[-d /usr/local/Cellar/node ]]; then
 else
   echo 'Installing node...'
   brew install node
+fi
+
+# check if npm is installed in /usr/local
+if [[ -e /usr/local/bin/surge ]]; then
+  echo 'Surge is already installed...'
+else
+  echo 'Installing Surge...'
+  npm install --global surge
 fi
