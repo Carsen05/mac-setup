@@ -27,6 +27,22 @@ else
   brew install git
 fi
 
+# check if python3 is installed in /usr/local
+if [[ -e /usr/local/bin/python3 ]]; then
+  echo 'Re-linking python3 to fix any broken symlinks...'
+  # relink to fix any broken symlinks
+  brew unlink python3
+  brew link python3
+# check if git is installed, but not linked
+elif [[-d /usr/local/Cellar/python3 ]]; then 
+  echo 'python3 is already installed. Linking python3...'
+  brew link python3
+# otherwise install python3
+else
+  echo 'Installing python3...'
+  brew install python3
+fi
+
 # check if node is installed in /usr/local
 if [[ -e /usr/local/bin/node ]]; then
   echo 'Re-linking node to fix any broken symlinks...'
